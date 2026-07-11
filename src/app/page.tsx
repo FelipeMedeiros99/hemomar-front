@@ -1,4 +1,5 @@
-import Image from "next/image";
+"use client";
+
 import { FaHeartbeat, FaVial, FaBone } from "react-icons/fa";
 import { IDonationType } from "../types/donation";
 import { DonationCard } from "../components/DonationCard/DonationCard";

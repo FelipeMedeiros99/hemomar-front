@@ -1,5 +1,4 @@
-import React from "react";
-// Importando ícones essenciais
+"use client";
 import {
   FaCheckCircle,
   FaExclamationTriangle,
