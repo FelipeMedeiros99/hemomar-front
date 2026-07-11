@@ -1,43 +1,73 @@
-import React from 'react';
-import { 
-  apheresisConcept, 
-  apheresisRequirements, 
-  medicationRestrictions, 
-  apheresisFacts 
-} from './data';
+import React from "react";
+import {
+  FaVial,
+  FaCheckCircle,
+  FaInfoCircle,
+  FaExclamationTriangle,
+  FaHeartbeat,
+} from "react-icons/fa";
+import { MdOutlineScience } from "react-icons/md";
+
+import {
+  apheresisConcept,
+  apheresisRequirements,
+  medicationRestrictions,
+  apheresisFacts,
+} from "./data";
+
 import {
   PageContainer,
-  PageHeader,
+  HeroSection,
+  HeroContent,
+  HeroImagePlaceholder,
   ImpactBanner,
   Section,
+  SectionTitle,
   GridContainer,
   InfoCard,
   CheckList,
-  WarningBox
-} from './styles';
+  ListItem,
+  WarningBox,
+} from "./styles";
+import CustomImage from "@/components/CustomImage/CustomImage";
+import Aferase from "@/assets/images/aferase.jpeg";
 
 export default function PlaquetasPage() {
   return (
     <PageContainer>
-      <PageHeader>
-        <h1>Doação de Plaquetas por Aférese</h1>
-        <p>
-          Um procedimento especial, seguro e de alto impacto que salva vidas de 
-          pacientes com condições clínicas complexas.
-        </p>
-      </PageHeader>
+      {/* Cabeçalho reestruturado com espaço para imagem */}
+      <HeroSection>
+        <HeroContent>
+          <h1>Doação de Plaquetas por Aférese</h1>
+          <p>
+            Um procedimento especial, seguro e de alto impacto que salva vidas
+            de pacientes com condições clínicas complexas.
+          </p>
+        </HeroContent>
+        <HeroImagePlaceholder>
+          <CustomImage src={Aferase} alt="Máquina de Aférese" />
+        </HeroImagePlaceholder>
+      </HeroSection>
 
       {/* Banner de Impacto (Princípio de Destaque Visual) */}
       <ImpactBanner>
-        <h2>1 = 6 a 8</h2>
-        <p>
-          Uma única doação por aférese equivale a 6 a 8 doações de sangue comuns. 
-          Sua disponibilidade e compromisso fazem a diferença.
-        </p>
+        <div className="banner-icon">
+          <FaHeartbeat size={48} />
+        </div>
+        <div className="banner-text">
+          <h2>1 Doação = 6 a 8 Pacientes</h2>
+          <p>
+            Uma única doação por aférese equivale a 6 a 8 doações de sangue
+            comuns. Sua disponibilidade e compromisso fazem a diferença.
+          </p>
+        </div>
       </ImpactBanner>
 
       {/* Seção 1: O que é e Quem precisa */}
       <Section>
+        <SectionTitle>
+          <FaVial color="#2b6cb0" /> Entenda o Procedimento
+        </SectionTitle>
         <GridContainer>
           {apheresisConcept.map((item) => (
             <InfoCard key={item.id}>
@@ -50,17 +80,24 @@ export default function PlaquetasPage() {
 
       {/* Seção 2: Critérios Específicos */}
       <Section>
-        <h2>Critérios para Doação</h2>
+        <SectionTitle>
+          <FaCheckCircle color="#2b6cb0" /> Critérios para Doação
+        </SectionTitle>
         <CheckList>
           {apheresisRequirements.map((req) => (
-            <li key={req.id}>{req.text}</li>
+            <ListItem key={req.id}>
+              <FaCheckCircle className="icon-success" />
+              <span>{req.text}</span>
+            </ListItem>
           ))}
         </CheckList>
       </Section>
 
       {/* Seção 3: Informações Importantes (Prazos e Pós-doação) */}
       <Section>
-        <h2>Informações Importantes</h2>
+        <SectionTitle>
+          <FaInfoCircle color="#2b6cb0" /> Informações Importantes
+        </SectionTitle>
         <GridContainer>
           {apheresisFacts.map((fact) => (
             <InfoCard key={fact.id}>
@@ -72,17 +109,28 @@ export default function PlaquetasPage() {
       </Section>
 
       {/* Seção 4: Alerta de Medicamentos */}
-      <Section style={{ backgroundColor: 'transparent', boxShadow: 'none', padding: 0 }}>
+      <Section
+        style={{
+          backgroundColor: "transparent",
+          boxShadow: "none",
+          padding: 0,
+        }}
+      >
         <WarningBox>
-          <h3>⚠️ Atenção aos Medicamentos</h3>
+          <div className="warning-header">
+            <FaExclamationTriangle size={28} />
+            <h3>Atenção aos Medicamentos</h3>
+          </div>
           <ul>
             {medicationRestrictions.map((med) => (
-              <li key={med.id}>{med.text}</li>
+              <li key={med.id}>
+                <div className="dot" />
+                <span>{med.text}</span>
+              </li>
             ))}
           </ul>
         </WarningBox>
       </Section>
-
     </PageContainer>
   );
 }
