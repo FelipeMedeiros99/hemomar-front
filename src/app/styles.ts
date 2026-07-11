@@ -80,10 +80,3 @@ export const CardsGrid = styled.section`
     grid-template-columns: repeat(3, 1fr);
   }
 `;
-
-export const DonationImage = styled(Image)`
-  width: 100%;
-  height: auto;
-  object-fit: fill;
-  border-radius: 8px;
-`;

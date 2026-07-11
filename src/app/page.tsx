@@ -10,10 +10,10 @@ import {
   HeroSubtitle,
   HeroImageContainer,
   CardsGrid,
-  DonationImage,
 } from "./styles";
 
 import docacao from "../assets/images/doacao.jpeg";
+import CustomImage from "@/components/CustomImage/CustomImage";
 
 const donationOptions: IDonationType[] = [
   {
@@ -58,7 +58,7 @@ export default function HomePage() {
         </HeroText>
 
         <HeroImageContainer>
-          <DonationImage src={docacao} alt="Doação de Sangue" />
+          <CustomImage src={docacao} alt="Doação de Sangue" />
         </HeroImageContainer>
       </HeroSection>
 
