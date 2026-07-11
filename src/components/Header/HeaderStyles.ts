@@ -87,21 +87,32 @@ export const Navigation = styled.nav<{ $isOpen: boolean }>`
   }
 `;
 
-export const NavLink = styled(Link)`
+// ... (mantenha os imports e cores anteriores)
+
+export const NavLink = styled(Link)<{ $isActive?: boolean }>`
   font-size: 1rem;
   font-weight: 500;
-  color: ${colors.textMuted};
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition:
+    color 0.2s ease,
+    border-bottom 0.2s ease;
   padding: 8px 12px;
 
+  /* Se estiver ativo, aplica a cor primária e sublinhado, senão usa cinza */
+  color: ${({ $isActive }) => ($isActive ? "#c53030" : "#4a5568")};
+  border-bottom: 2px solid
+    ${({ $isActive }) => ($isActive ? "#c53030" : "transparent")};
+
   &:hover {
-    color: ${colors.primary};
+    color: #c53030;
+    border-bottom: 2px solid #c53030;
   }
 
   @media (max-width: 768px) {
     width: 100%;
     text-align: center;
     padding: 16px;
+    border-bottom: ${({ $isActive }) =>
+      $isActive ? "2px solid #c53030" : "none"};
   }
 `;
