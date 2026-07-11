@@ -1,63 +1,99 @@
-import React from 'react';
-import { institutionalInfo, hemorredeUnits } from './data';
+import React from "react";
+import {
+  FaMapMarkerAlt,
+  FaClock,
+  FaPhone,
+  FaWhatsapp,
+  FaInfoCircle,
+} from "react-icons/fa";
+import { institutionalInfo, hemorredeUnits } from "./data";
 import {
   PageWrapper,
   MissionSection,
   NetworkHeader,
   GridNetwork,
   UnitCard,
-  ContactTag
-} from './styles';
+  UnitTitle,
+  MetaInfo,
+  ContactWrapper,
+  ContactTag,
+} from "./styles";
 
 export default function SobreNosPage() {
+  // Função auxiliar para gerar link do Google Maps
+  const getMapsUrl = (address: string) =>
+    `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
+
+  // Função para formatar número do WhatsApp (remove caracteres não numéricos)
+  const getWhatsAppUrl = (number: string) => {
+    const cleanNumber = number.replace(/\D/g, "");
+    return `https://wa.me/55${cleanNumber}`;
+  };
+
   return (
     <PageWrapper>
-      {/* Bloco Institucional Principal */}
       <MissionSection>
+        <FaInfoCircle
+          size={40}
+          color="#c53030"
+          style={{ marginBottom: "16px" }}
+        />
         <h1>{institutionalInfo.title}</h1>
         <p>{institutionalInfo.mission}</p>
       </MissionSection>
 
-      {/* Bloco de Localização / Infraestrutura */}
       <section>
         <NetworkHeader>
           <h2>Nossa Hemorrede</h2>
-          <p>
-            Encontre a unidade de coleta de sangue mais próxima de você. 
-            O Governo do Maranhão disponibiliza núcleos em regiões estratégicas.
-          </p>
+          <p>Encontre a unidade de coleta de sangue mais próxima de você.</p>
         </NetworkHeader>
 
         <GridNetwork>
           {hemorredeUnits.map((unit) => (
             <UnitCard key={unit.id} $isMain={unit.isMainNode}>
-              <h3>{unit.city}</h3>
-              
-              <address>
-                <div className="meta-info">
-                  <strong>📍 Endereço:</strong><br />
-                  {unit.address}
-                </div>
-                
-                <div className="meta-info" style={{ marginTop: '16px' }}>
-                  <strong>🕒 Horário de Funcionamento:</strong>
-                  <ul>
-                    {unit.operatingHours.map((hour, index) => (
-                      <li key={index}>{hour}</li>
-                    ))}
-                  </ul>
-                </div>
-              </address>
+              <UnitTitle>{unit.city}</UnitTitle>
 
-              {/* Renderização condicional garantida pela tipagem (contacts é opcional) */}
-              {unit.contacts && unit.contacts.length > 0 && (
-                <div>
-                  {unit.contacts.map((contact, index) => (
-                    <ContactTag key={index}>
-                      {contact.type}: {contact.number}
+              <MetaInfo>
+                <FaMapMarkerAlt className="icon" />
+                {/* Link direto para o Google Maps */}
+                <a
+                  href={getMapsUrl(unit.address)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {unit.address}
+                </a>
+              </MetaInfo>
+
+              <MetaInfo>
+                <FaClock className="icon" />
+                <ul>
+                  {unit.operatingHours.map((hour, index) => (
+                    <li key={index}>{hour}</li>
+                  ))}
+                </ul>
+              </MetaInfo>
+
+              {unit.contacts && (
+                <ContactWrapper>
+                  {unit.contacts.map((c, i) => (
+                    <ContactTag
+                      key={i}
+                      $type={c.type}
+                      href={
+                        c.type === "WhatsApp"
+                          ? getWhatsAppUrl(c.number)
+                          : `tel:${c.number.replace(/\D/g, "")}`
+                      }
+                      target={c.type === "WhatsApp" ? "_blank" : "_self"}
+                      rel={c.type === "WhatsApp" ? "noopener noreferrer" : ""}
+                      as="a"
+                    >
+                      {c.type === "WhatsApp" ? <FaWhatsapp /> : <FaPhone />}
+                      {c.number}
                     </ContactTag>
                   ))}
-                </div>
+                </ContactWrapper>
               )}
             </UnitCard>
           ))}
