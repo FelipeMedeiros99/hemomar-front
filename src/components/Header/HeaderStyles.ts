@@ -1,14 +1,24 @@
-'use client';
+"use client";
 
-import styled from 'styled-components';
-import Link from 'next/link';
+import styled from "styled-components";
+import Link from "next/link";
+
+// Paleta de cores centralizada no estilo
+const colors = {
+  primary: "#c53030",
+  textMain: "#2d3748",
+  textMuted: "#4a5568",
+  surface: "#ffffff",
+  shadow: "rgba(0, 0, 0, 0.05)",
+  shadowMobile: "rgba(0, 0, 0, 0.1)",
+};
 
 export const HeaderContainer = styled.header`
-  background-color: var(--color-surface);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  background-color: ${colors.surface};
+  box-shadow: 0 2px 4px ${colors.shadow};
   position: sticky;
   top: 0;
-  z-index: 50; /* Garante que o header fique sobre outros elementos durante o scroll */
+  z-index: 1000;
   width: 100%;
 `;
 
@@ -19,7 +29,6 @@ export const HeaderContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: wrap; /* Permite que os links desçam graciosamente em telas menores */
 `;
 
 export const LogoArea = styled(Link)`
@@ -28,39 +37,71 @@ export const LogoArea = styled(Link)`
   gap: 8px;
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--color-primary);
+  color: ${colors.primary};
   text-decoration: none;
-  
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.9;
+  }
+
   span {
-    color: var(--color-text-main);
+    color: ${colors.textMain};
+    font-weight: 400;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.25rem;
   }
 `;
 
-export const Navigation = styled.nav`
+export const MenuButton = styled.button`
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: ${colors.textMain};
+  cursor: pointer;
+  padding: 8px;
+
+  @media (max-width: 768px) {
+    display: block;
+  }
+`;
+
+export const Navigation = styled.nav<{ $isOpen: boolean }>`
   display: flex;
   gap: 24px;
   align-items: center;
 
   @media (max-width: 768px) {
+    display: ${({ $isOpen }) => ($isOpen ? "flex" : "none")};
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
     width: 100%;
-    justify-content: center;
-    margin-top: 16px;
-    gap: 16px;
-    flex-wrap: wrap;
+    background-color: ${colors.surface};
+    padding: 20px 0;
+    box-shadow: 0 4px 6px ${colors.shadowMobile};
   }
 `;
 
 export const NavLink = styled(Link)`
   font-size: 1rem;
   font-weight: 500;
-  color: var(--color-text-muted);
+  color: ${colors.textMuted};
   text-decoration: none;
-  transition: color 0.2s ease, border-bottom 0.2s ease;
-  padding-bottom: 4px;
-  border-bottom: 2px solid transparent;
+  transition: color 0.2s ease;
+  padding: 8px 12px;
 
   &:hover {
-    color: var(--color-primary);
-    border-bottom: 2px solid var(--color-primary);
+    color: ${colors.primary};
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    text-align: center;
+    padding: 16px;
   }
 `;
