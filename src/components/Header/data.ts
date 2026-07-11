@@ -1,4 +1,4 @@
-import { INavItem } from '../types/navigation';
+import { INavItem } from "@/types/navigation"; 
 
 /**
  * Centraliza os links de navegação principal.
@@ -10,5 +10,5 @@ export const headerNavigation: INavItem[] = [
   { label: 'Doação de Sangue', href: '/doacao-sangue' },
   { label: 'Plaquetas', href: '/plaquetas' },
   { label: 'Medula Óssea', href: '/medula-ossea' },
-  { label: 'Unidades', href: '/unidades' },
+  { label: 'Sobre Nós', href: '/sobre-nos' },
 ];

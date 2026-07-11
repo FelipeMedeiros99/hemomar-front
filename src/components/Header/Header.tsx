@@ -1,14 +1,13 @@
 'use client';
 
 import React from 'react';
-import { headerNavigation } from '../../utils/NavigationData';
+import { headerNavigation } from './data'; 
 import { 
   HeaderContainer, 
   HeaderContent, 
   LogoArea, 
   Navigation, 
-  NavLink 
-} from './HeaderStyles';
+  NavLink } from './HeaderStyles';
 
 /**
  * Componente global de Cabeçalho.
