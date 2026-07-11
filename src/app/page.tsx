@@ -1,66 +1,56 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import React from 'react';
+import { IDonationType } from '../types/donation';
+import { DonationCard } from '../components/DonationCard/DonationCard';
+import {
+  MainContainer,
+  HeroSection,
+  HeroTitle,
+  HeroSubtitle,
+  CardsGrid,
+} from './Home.styles';
 
-export default function Home() {
+const donationOptions: IDonationType[] = [
+  {
+    id: 'sangue',
+    title: 'Doação de Sangue',
+    description: 'Um ato voluntário e seguro que pode beneficiar até 4 pessoas. O sangue é insubstituível. O seu ato de amor salva vidas.',
+    href: '/doacao-sangue',
+  },
+  {
+    id: 'plaquetas',
+    title: 'Plaquetas por Aférese',
+    description: 'Processo moderno que coleta apenas as plaquetas. Uma doação equivale a 6 a 8 doações comuns. Essencial para pacientes oncológicos.',
+    href: '/plaquetas',
+  },
+  {
+    id: 'medula',
+    title: 'Medula Óssea',
+    description: 'Cadastre-se no REDOME. A doação ajuda pacientes que têm o transplante como única chance de cura, como em casos de leucemia.',
+    href: '/medula-ossea',
+  },
+];
+
+export default function HomePage() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <MainContainer>
+      <HeroSection>
+        <HeroTitle>
+          Sua doação <span>Salva Vidas</span>
+        </HeroTitle>
+        <HeroSubtitle>
+          Bem-vindo ao portal de informações para doadores de São Luís. 
+          Entenda os requisitos, o passo a passo e junte-se a nós nesse ato de solidariedade.
+        </HeroSubtitle>
+      </HeroSection>
+
+      <CardsGrid>
+        {donationOptions.map((donation) => (
+          <DonationCard key={donation.id} data={donation} />
+        ))}
+      </CardsGrid>
+
+      {/* Injetando a nova seção de informações institucionais */}
+
+    </MainContainer>
   );
 }
