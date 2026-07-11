@@ -249,15 +249,63 @@ export const RedomeBanner = styled.div`
     opacity: 0.9;
   }
 
-  .app-links {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    background-color: rgba(255, 255, 255, 0.15);
-    padding: 12px 24px;
+  /* Estilização do Botão de Ação */
+  .redirect-button {
+    display: inline-block;
+    background-color: #ffffff;
+    color: #2b6cb0;
+    padding: 12px 32px;
     border-radius: 8px;
-    font-weight: 500;
-    backdrop-filter: blur(4px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    font-weight: 700;
+    text-decoration: none;
+    transition:
+      transform 0.2s,
+      background-color 0.2s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .redirect-button:hover {
+    transform: translateY(-2px);
+    background-color: #f7fafc;
   }
 `;
+
+// export const RedomeBanner = styled.div`
+//   background: linear-gradient(135deg, #2b6cb0 0%, #2c5282 100%);
+//   color: #ffffff;
+//   padding: 40px;
+//   border-radius: 16px;
+//   margin-top: 48px;
+//   box-shadow: 0 10px 25px -5px rgba(43, 108, 176, 0.4);
+
+//   .banner-content {
+//     max-width: 800px;
+//     margin: 0 auto;
+//     text-align: center;
+//   }
+
+//   h3 {
+//     font-size: 1.8rem;
+//     margin-bottom: 16px;
+//     font-weight: 800;
+//   }
+
+//   p {
+//     font-size: 1.1rem;
+//     line-height: 1.6;
+//     margin-bottom: 24px;
+//     opacity: 0.9;
+//   }
+
+//   .app-links {
+//     display: inline-flex;
+//     align-items: center;
+//     gap: 12px;
+//     background-color: rgba(255, 255, 255, 0.15);
+//     padding: 12px 24px;
+//     border-radius: 8px;
+//     font-weight: 500;
+//     backdrop-filter: blur(4px);
+//     border: 1px solid rgba(255, 255, 255, 0.3);
+//   }
+// `;

@@ -144,22 +144,24 @@ export default function MedulaOsseaPage() {
         </MethodsGrid>
       </Section>
 
-      {/* Alerta Final: REDOME App (Design focado em CTA) */}
       <RedomeBanner>
         <div className="banner-content">
           <h3>Mantenha seu cadastro atualizado!</h3>
           <p>
             O REDOME possui milhares de doadores, mas as chances dependem de
-            conseguirem entrar em contato com você. Se mudar de telefone ou
-            endereço, atualize seus dados imediatamente.
+            conseguirem encontrar você. Se mudou de telefone ou endereço,
+            atualize seus dados agora mesmo no site oficial.
           </p>
-          <div className="app-links">
-            <MdSmartphone size={24} />
-            <span>
-              Baixe o aplicativo oficial <strong>REDOME</strong> nas lojas de
-              aplicativos.
-            </span>
-          </div>
+
+          {/* Botão de redirecionamento */}
+          <a
+            href="https://redome.inca.gov.br/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="redirect-button"
+          >
+            Acessar site do REDOME
+          </a>
         </div>
       </RedomeBanner>
     </PageContainer>
