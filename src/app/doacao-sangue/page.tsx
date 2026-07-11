@@ -1,62 +1,94 @@
-import React from 'react';
-import { 
-  basicRequirements, 
-  temporaryImpediments, 
-  permanentImpediments, 
-  donationSteps 
-} from './data';
+import React from "react";
+// Importando ícones essenciais
+import {
+  FaCheckCircle,
+  FaExclamationTriangle,
+  FaTimesCircle,
+  FaCalendarAlt,
+  FaHeartbeat,
+} from "react-icons/fa";
+import { MdOutlineBloodtype } from "react-icons/md";
+
+import doacao from "@/assets/images/profissional.jpeg";
+
+import {
+  basicRequirements,
+  temporaryImpediments,
+  permanentImpediments,
+  donationSteps,
+} from "./data";
 import {
   PageContainer,
-  PageHeader,
+  HeroSection,
+  HeroContent,
+  HeroImagePlaceholder,
   Section,
+  SectionTitle,
   ListGrid,
-  DangerList,
+  ListItem,
   TimelineContainer,
-  TimelineItem,
+  TimelineCard,
   IntervalGrid,
-  IntervalCard
-} from './styles';
+  IntervalCard,
+} from "./styles";
+import CustomImage from "@/components/CustomImage/CustomImage";
 
 export default function DoacaoSanguePage() {
   return (
     <PageContainer>
-      <PageHeader>
-        <h1>Doação de Sangue</h1>
-        <p>
-          Um ato de amor e solidariedade. Todo o material utilizado é estéril 
-          e descartável. O seu sangue é insubstituível e pode beneficiar até 4 pessoas.
-        </p>
-      </PageHeader>
+      {/* Seção Hero: Texto + Espaço para Imagem */}
+      <HeroSection>
+        <HeroContent>
+          <h1>Doação de Sangue</h1>
+          <p>
+            Um ato de amor e solidariedade. Todo o material utilizado é estéril
+            e descartável. O seu sangue é insubstituível e pode beneficiar até 4
+            pessoas.
+          </p>
+        </HeroContent>
+        <HeroImagePlaceholder>
+          <CustomImage src={doacao} alt="Doação de Sangue" />
+        </HeroImagePlaceholder>
+      </HeroSection>
 
       {/* Seção 1: Requisitos */}
       <Section>
-        <h2>Requisitos Básicos</h2>
+        <SectionTitle>
+          <FaCheckCircle color="#2b6cb0" /> Requisitos Básicos
+        </SectionTitle>
         <ListGrid>
           {basicRequirements.map((req) => (
-            <li key={req.id}>{req.text}</li>
+            <ListItem key={req.id}>
+              <FaCheckCircle className="icon-success" />
+              <span>{req.text}</span>
+            </ListItem>
           ))}
         </ListGrid>
       </Section>
 
-      {/* Seção 2: O Processo */}
+      {/* Seção 2: O Processo (Transformado em Cards) */}
       <Section>
-        <h2>Passo a Passo da Doação</h2>
+        <SectionTitle>
+          <FaHeartbeat color="#2b6cb0" /> Passo a Passo da Doação
+        </SectionTitle>
         <TimelineContainer>
           {donationSteps.map((step) => (
-            <TimelineItem key={step.stepNumber}>
-              <div className="step-number">{step.stepNumber}</div>
-              <div>
+            <TimelineCard key={step.stepNumber}>
+              <div className="step-badge">{step.stepNumber}</div>
+              <div className="step-content">
                 <h3>{step.title}</h3>
                 <p>{step.description}</p>
               </div>
-            </TimelineItem>
+            </TimelineCard>
           ))}
         </TimelineContainer>
       </Section>
 
       {/* Seção 3: Intervalos */}
       <Section>
-        <h2>Intervalo Entre Doações</h2>
+        <SectionTitle>
+          <FaCalendarAlt color="#2b6cb0" /> Intervalo Entre Doações
+        </SectionTitle>
         <IntervalGrid>
           <IntervalCard>
             <h3>Homens</h3>
@@ -71,25 +103,35 @@ export default function DoacaoSanguePage() {
         </IntervalGrid>
       </Section>
 
-      {/* Seção 4: Impedimentos */}
+      {/* Seção 4: Impedimentos Temporários */}
       <Section>
-        <h2>Impedimentos Temporários</h2>
+        <SectionTitle>
+          <FaExclamationTriangle color="#dd6b20" /> Impedimentos Temporários
+        </SectionTitle>
         <ListGrid>
           {temporaryImpediments.map((imp) => (
-            <li key={imp.id}>{imp.text}</li>
+            <ListItem key={imp.id}>
+              <FaExclamationTriangle className="icon-warning" />
+              <span>{imp.text}</span>
+            </ListItem>
           ))}
         </ListGrid>
       </Section>
 
+      {/* Seção 5: Impedimentos Definitivos */}
       <Section>
-        <h2>Impedimentos Definitivos</h2>
-        <DangerList>
+        <SectionTitle>
+          <FaTimesCircle color="#e53e3e" /> Impedimentos Definitivos
+        </SectionTitle>
+        <ListGrid>
           {permanentImpediments.map((imp) => (
-            <li key={imp.id}>{imp.text}</li>
+            <ListItem key={imp.id}>
+              <FaTimesCircle className="icon-danger" />
+              <span>{imp.text}</span>
+            </ListItem>
           ))}
-        </DangerList>
+        </ListGrid>
       </Section>
-
     </PageContainer>
   );
 }
