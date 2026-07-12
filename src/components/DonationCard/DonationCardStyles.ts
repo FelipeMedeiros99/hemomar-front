@@ -8,6 +8,7 @@ export const CardContainer = styled.article`
   border-radius: 8px;
   padding: 24px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border: 1px solid #0000000d;
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease;
