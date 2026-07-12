@@ -51,6 +51,7 @@ export const ChatWidget: React.FC = () => {
       });
 
       const data = await response.json();
+      console.log("Resposta da API:", data);
 
       if (!response.ok) {
         throw new Error(data.error || "Erro na comunicação com o assistente.");
@@ -66,23 +67,6 @@ export const ChatWidget: React.FC = () => {
       );
     }
   };
-  // const handleSubmit = async (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   if (!inputValue.trim()) return;
-
-  //   const userText = inputValue;
-  //   addMessage(userText, "user");
-  //   setInputValue("");
-
-  //   // TODO: Aqui integraremos a chamada para a sua API RAG.
-  //   // Simulando o tempo de resposta da IA por enquanto:
-  //   setTimeout(() => {
-  //     addMessage(
-  //       `Estou processando sua dúvida sobre: "${userText}". A integração RAG está a caminho!`,
-  //       "ai",
-  //     );
-  //   }, 1000);
-  // };
 
   // Previne renderização defeituosa do localStorage no servidor
   if (!isLoaded) return null;
