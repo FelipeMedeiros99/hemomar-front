@@ -6,4 +6,5 @@ export interface IDonationType {
   title: string;
   description: string;
   href: string;
+  icon?: ReactNode;
 }

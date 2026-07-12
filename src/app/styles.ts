@@ -73,10 +73,11 @@ export const HeroSubtitle = styled.p`
 export const CardsGrid = styled.section`
   display: grid;
   grid-template-columns: 1fr;
-  gap: 24px;
   margin-bottom: 60px;
+  gap: 78px;
 
   @media (min-width: 768px) {
     grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
   }
 `;
