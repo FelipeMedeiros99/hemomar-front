@@ -57,7 +57,7 @@ export const ChatWindow = styled.div<{ $isOpen: boolean }>`
 
   @media (max-width: 480px) {
     width: calc(100vw - 32px); /* Ocupa quase a tela toda no celular */
-    height: calc(100vh - 120px);
+    height: calc(90vh - 120px);
     right: 16px;
     bottom: 80px;
     position: fixed;
