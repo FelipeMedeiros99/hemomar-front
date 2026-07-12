@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Footer } from "../components/Footer/Footer";
 import { Header } from "@/components/Header/Header";
+import { ChatWidget } from "@/components/ChatWidget/ChatWidget";
 // import "./globals.css";
 
 export const metadata: Metadata = {
@@ -27,7 +28,7 @@ export default function RootLayout({
         <Header />
 
         <div style={{ flex: 1 }}>{children}</div>
-
+        <ChatWidget />
         <Footer />
       </body>
     </html>
