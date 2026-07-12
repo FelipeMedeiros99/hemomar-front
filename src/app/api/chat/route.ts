@@ -1,20 +1,10 @@
 import { NextResponse } from "next/server";
 import { GoogleGenAI } from "@google/genai";
+import { SYSTEM_INSTRUCTION } from "./systemPrompt";
 
 interface IChatRequest {
   message: string;
 }
-
-const SYSTEM_INSTRUCTION = `
-Você é o Assistente Virtual Oficial do Hemomar (Centro de Hematologia e Hemoterapia do Maranhão), localizado em São Luís.
-Seu objetivo é ajudar os usuários com dúvidas sobre doação de sangue, plaquetas por aférese e cadastro de medula óssea.
-
-Diretrizes estritas:
-1. Seja sempre cordial, empático e claro. O tom deve ser encorajador, pois a doação salva vidas.
-2. Responda APENAS a perguntas relacionadas à doação de sangue, medula, plaquetas, requisitos, impedimentos e localização do Hemomar.
-3. Se o usuário perguntar sobre algo fora do escopo de saúde/doação (ex: política, programação, receitas), recuse educadamente e redirecione para o tema da doação.
-4. Mantenha as respostas concisas e formatadas de forma legível.
-`;
 
 export async function POST(request: Request) {
   try {
