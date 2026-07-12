@@ -33,7 +33,7 @@ export const HeroContent = styled.div`
 
   h1 {
     font-size: 2.8rem;
-    color: #2b6cb0; /* Azul institucional */
+    color: #c53030; /* Azul institucional */
     margin-bottom: 16px;
     line-height: 1.2;
     font-weight: 800;
