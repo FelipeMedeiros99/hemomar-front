@@ -84,10 +84,9 @@ export const Navigation = styled.nav<{ $isOpen: boolean }>`
     background-color: ${colors.surface};
     padding: 20px 0;
     box-shadow: 0 4px 6px ${colors.shadowMobile};
+    gap: 0;
   }
 `;
-
-// ... (mantenha os imports e cores anteriores)
 
 export const NavLink = styled(Link)<{ $isActive?: boolean }>`
   font-size: 1rem;
@@ -112,7 +111,7 @@ export const NavLink = styled(Link)<{ $isActive?: boolean }>`
     width: 100%;
     text-align: center;
     padding: 16px;
-    border-bottom: ${({ $isActive }) =>
-      $isActive ? "2px solid #c53030" : "none"};
+    color: ${({ $isActive }) => ($isActive ? "white" : "#4a5568")};
+    background-color: ${({ $isActive }) => ($isActive ? "#c53030" : "none")};
   }
 `;
