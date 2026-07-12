@@ -111,7 +111,7 @@ export const NavLink = styled(Link)<{ $isActive?: boolean }>`
     width: 100%;
     text-align: center;
     padding: 16px;
-    color: ${({ $isActive }) => ($isActive ? "white" : "#4a5568")};
-    background-color: ${({ $isActive }) => ($isActive ? "#c53030" : "none")};
+    color: ${({ $isActive }) => ($isActive ? "#c53030" : "#4a5568")};
+    border-bottom: none;
   }
 `;
