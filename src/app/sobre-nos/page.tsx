@@ -21,10 +21,6 @@ import {
 } from "./styles";
 
 export default function SobreNosPage() {
-  // Função auxiliar para gerar link do Google Maps
-  const getMapsUrl = (address: string) =>
-    `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
-
   // Função para formatar número do WhatsApp (remove caracteres não numéricos)
   const getWhatsAppUrl = (number: string) => {
     const cleanNumber = number.replace(/\D/g, "");
@@ -57,11 +53,7 @@ export default function SobreNosPage() {
               <MetaInfo>
                 <FaMapMarkerAlt className="icon" />
                 {/* Link direto para o Google Maps */}
-                <a
-                  href={getMapsUrl(unit.address)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <a href={unit.mapUrl} target="_blank" rel="noopener noreferrer">
                   {unit.address}
                 </a>
               </MetaInfo>
