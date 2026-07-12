@@ -30,24 +30,59 @@ export const ChatWidget: React.FC = () => {
   }, [messages, isOpen]);
 
   const handleToggle = () => setIsOpen((prev) => !prev);
-
+  // Dentro do componente ChatWidget, atualize o handleSubmit:
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!inputValue.trim()) return;
 
     const userText = inputValue;
+    // 1. Adiciona a mensagem do usuário imediatamente na tela
     addMessage(userText, "user");
     setInputValue("");
 
-    // TODO: Aqui integraremos a chamada para a sua API RAG.
-    // Simulando o tempo de resposta da IA por enquanto:
-    setTimeout(() => {
+    try {
+      // 2. Faz a chamada segura para o nosso backend Next.js
+      const response = await fetch("/api/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ message: userText }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Erro na comunicação com o assistente.");
+      }
+
+      // 3. Adiciona a resposta da IA no histórico
+      addMessage(data.reply, "ai");
+    } catch (error) {
+      console.error("Erro de chat:", error);
       addMessage(
-        `Estou processando sua dúvida sobre: "${userText}". A integração RAG está a caminho!`,
+        "Desculpe, estou enfrentando instabilidades no momento. Por favor, tente novamente em instantes.",
         "ai",
       );
-    }, 1000);
+    }
   };
+  // const handleSubmit = async (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   if (!inputValue.trim()) return;
+
+  //   const userText = inputValue;
+  //   addMessage(userText, "user");
+  //   setInputValue("");
+
+  //   // TODO: Aqui integraremos a chamada para a sua API RAG.
+  //   // Simulando o tempo de resposta da IA por enquanto:
+  //   setTimeout(() => {
+  //     addMessage(
+  //       `Estou processando sua dúvida sobre: "${userText}". A integração RAG está a caminho!`,
+  //       "ai",
+  //     );
+  //   }, 1000);
+  // };
 
   // Previne renderização defeituosa do localStorage no servidor
   if (!isLoaded) return null;
