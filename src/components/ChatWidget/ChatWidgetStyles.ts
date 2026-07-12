@@ -107,27 +107,6 @@ export const MessageArea = styled.div`
   background-color: #f7fafc;
 `;
 
-export const MessageBubble = styled.div<{ $sender: "user" | "ai" }>`
-  max-width: 80%;
-  padding: 12px 16px;
-  border-radius: 16px;
-  font-size: 0.95rem;
-  line-height: 1.5;
-  align-self: ${({ $sender }) =>
-    $sender === "user" ? "flex-end" : "flex-start"};
-
-  /* Cores ao estilo Messenger */
-  background-color: ${({ $sender }) =>
-    $sender === "user" ? "#3182ce" : "#e2e8f0"};
-  color: ${({ $sender }) => ($sender === "user" ? "#ffffff" : "#2d3748")};
-
-  /* Borda sutil para dar direção ao balão */
-  border-bottom-right-radius: ${({ $sender }) =>
-    $sender === "user" ? "4px" : "16px"};
-  border-bottom-left-radius: ${({ $sender }) =>
-    $sender === "ai" ? "4px" : "16px"};
-`;
-
 export const InputForm = styled.form`
   display: flex;
   padding: 12px;
@@ -162,5 +141,37 @@ export const InputForm = styled.form`
       color: #a0aec0;
       cursor: not-allowed;
     }
+  }
+`;
+
+export const MessageBubble = styled.div<{ $sender: "user" | "ai" }>`
+  max-width: 85%;
+  padding: 12px 16px;
+  border-radius: 16px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  align-self: ${({ $sender }) =>
+    $sender === "user" ? "flex-end" : "flex-start"};
+  background-color: ${({ $sender }) =>
+    $sender === "user" ? "#3182ce" : "#e2e8f0"};
+  color: ${({ $sender }) => ($sender === "user" ? "#ffffff" : "#2d3748")};
+  border-bottom-right-radius: ${({ $sender }) =>
+    $sender === "user" ? "4px" : "16px"};
+  border-bottom-left-radius: ${({ $sender }) =>
+    $sender === "ai" ? "4px" : "16px"};
+
+  /* Estilização para as tags HTML geradas pela IA */
+  strong {
+    font-weight: 700;
+  }
+
+  ul {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    padding-left: 20px;
+  }
+
+  li {
+    margin-bottom: 4px;
   }
 `;
